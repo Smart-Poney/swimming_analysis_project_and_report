@@ -1,0 +1,32 @@
+{
+    "id": "A44071DB",
+    "path": "~/swimming_analysis_project_and_report/03.3_R_comparison_digitalization_method/README.Rmd",
+    "project_path": "README.Rmd",
+    "type": "r_markdown",
+    "hash": "1004962341",
+    "contents": "",
+    "dirty": false,
+    "created": 1782129223933.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "31,40",
+        "scrollLine": "19",
+        "rmdVisualMode": "false",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "87:0",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782913342,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782913343011,
+    "read_only": false,
+    "read_only_alternatives": []
+}

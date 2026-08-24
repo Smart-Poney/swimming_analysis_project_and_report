@@ -1,0 +1,20 @@
+Package: R_fish_silhouette_animation
+Title: two scripts to produce animation of the fish silouhettes
+Version: 0.0.0.9000
+Authors@R: 
+    person("Felix", "Guillaud", , "felix.guillaud.work@gmail.com", role = c("aut", "cre"))
+Description: from the raw data of MATLAB and EthoVisionXt, two customized scripts are used to better visualize fish kinematics during the fast start (escape response) and during natural behaviour in artificial contidions. processing can take time considering the rendering of animation.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports: 
+    dplyr,
+    ggplot2,
+    gifski,
+    readxl,
+    svglite,
+    tydiverse,
+    usethis,
+    viridis,
+    zoo

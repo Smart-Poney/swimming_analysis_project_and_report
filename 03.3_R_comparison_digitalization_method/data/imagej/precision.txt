@@ -1,0 +1,15 @@
+Data imagej contient :
+
+clara -> les 3 premiers fast-start pris avec environ 200pts
+
+lili -> les 3 premiers fast-start pris avec environ 200pts
+
+maxime -> les 3 premiers fast-start pris avec environ 200pts
+
+rep_1 -> les 9 fast-start pris avec environ 200pts
+
+rep_2 -> les 9 fast-start pris avec environ 200pts
+
+rep_3 -> les 9 fast-start pris avec environ 200pts
+
+rep_4 -> les 9 fast-start pris avec exactement 15pts à comparer avec rep_4 de matlab

@@ -1,0 +1,41 @@
+---
+title: "README"
+author: "FG"
+date: "2026-07-01"
+output: html_document
+---
+
+# R_fish_silhouette_animation
+
+## Overview
+
+This repository contains the R workflow used to animate fish silouhette during fast-start events and behvioural phases (see report) by reconstructing fish body from digitised body midlines.
+
+From the raw data of MATLAB and EthoVisionXt, two customized scripts are used to better visualize fish kinematics during the fast start (escape response) and during natural behaviour in artificial contidions. processing can take time considering the rendering of animation.
+
+first script : **01_fast_start_animation_whole_fish** use raw data from MATLAB contained in *data/raw* second script : **02_animation_group** use raw data from EthoVisionXT contained in *data/area*
+
+## Launch rendering
+
+Run:
+
+``` r
+source("make.R")
+```
+
+Or run scripts individually:
+
+``` r
+source("script/01_fast_start_animation_whole_fish.R")
+source("script/02_animation_group.R")
+```
+
+## Author
+
+Felix Guillaud
+
+Mail: [felix.guillaud.work\@gmail.com](mailto:felix.guillaud.work@gmail.com){.email}
+
+## License
+
+This project is distributed under the MIT License.

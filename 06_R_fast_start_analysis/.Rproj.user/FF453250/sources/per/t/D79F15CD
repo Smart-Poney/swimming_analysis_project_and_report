@@ -1,0 +1,26 @@
+{
+    "id": "D79F15CD",
+    "path": "~/swimming_analysis_project_and_report/06_R_fast_start_analysis/analyse/03.acceleration_distance_position_metrics.R",
+    "project_path": "analyse/03.acceleration_distance_position_metrics.R",
+    "type": "r_source",
+    "hash": "525434161",
+    "contents": "",
+    "dirty": false,
+    "created": 1782227197740.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "29,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782226687,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782226687,
+    "read_only": false,
+    "read_only_alternatives": []
+}

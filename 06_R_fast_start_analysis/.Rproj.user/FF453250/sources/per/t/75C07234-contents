@@ -1,0 +1,68 @@
+########################################################
+# projet tp_training
+#
+# entrainement françois guillhaumon
+#
+# FG
+#######################################################
+
+ISIT2 <- read.table("C:/Users/guill/Documents/Fac Saint-Denis réunion 2024-2026/Ecologie_Numerique_2/Jeager/TP_R/TP4/data/ISIT2.txt", header=TRUE)
+explore(ISIT2)
+
+#Bibliotheque
+library("usethis")
+library("devtools")
+library("sf")
+
+## Ajout d'un fichier DESCRIPTION ----
+usethis::use_description(check_name = FALSE)
+usethis::use_ccby_license()
+
+## Ajout de sous-répertoires ----
+reps <- c("data", "analyse", "R", "output", "figure", "reference")
+lapply(reps, dir.create)
+
+## Creation d'un fichier functions.R dans R/ --
+usethis::use_r("functions")
+usethis::use_r("explore")
+usethis::use_r("download_sr")
+usethis::use_r("dl_grid_cells")
+usethis::use_r("gather_raw_data")
+
+paste("si","je","dis") # essaie d'ecrire avec espace ou sans espace
+paste0("si","je","dis")
+
+dl_bird_sr() # isoler les fonctions avec leur nom, possible de faire un package si besoin mais compliqué
+# formation à la recherche reproductible si stage à Montpellier !
+
+download_sr(taxon = 'mamm')
+
+rm(dl_bird_sr) # nettoyage
+rm(download_sr)
+
+dl_grid_cells()
+
+devtools::document() # c'est incroyable
+?dl_grid_cells
+
+rm(dl_grid_cells)
+rm(explore)
+
+usethis::use_package("utils") #pour rajouter les dependances
+?usethis::use_package()
+usethis::use_package("depends") # ecrit automatiquement dans import 
+usethis::use_package("ggplot2", type = "Depends")
+
+devtools::install_deps()
+devtools::load_all()
+
+utils::file.edit("analyse/01_download-data.R")
+utils::file.edit("make.R")
+
+## Ajout d'un README ----
+utils::file.edit("README.md")
+
+gather_raw_data()
+grid
+plot(grid)
+plot(grid, border=NA)

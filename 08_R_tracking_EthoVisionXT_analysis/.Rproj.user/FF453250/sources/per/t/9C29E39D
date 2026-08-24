@@ -1,0 +1,28 @@
+{
+    "id": "9C29E39D",
+    "path": "~/swimming_analysis_project_and_report/07_R_tracking_EthoVisionXT_analysis/analyse/06.statistic_models.R",
+    "project_path": "analyse/06.statistic_models.R",
+    "type": "r_source",
+    "hash": "621976870",
+    "contents": "",
+    "dirty": false,
+    "created": 1782911790713.0,
+    "source_on_save": false,
+    "relative_order": 11,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "7,24",
+        "scrollLine": "0",
+        "docOutlineVisible": "1",
+        "docOutlineSize": "228"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782906296,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782906296,
+    "read_only": false,
+    "read_only_alternatives": []
+}

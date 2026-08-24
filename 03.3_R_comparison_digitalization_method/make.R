@@ -1,0 +1,35 @@
+#
+# 22/06/26 - make.R 
+# 
+# create directory and call analysis functions
+#
+# autor: FG    
+# project : comparison_digitalization_method
+# latest modification : 22/06/2026
+#
+
+rm(list=ls())
+
+#folder_creation
+folder <- factor(c("data","data/imagej","data/matlab", "analyse", "R", "output", "figure",
+                   "output/formated_data", "figure/animation", "output/transfo_data"))
+for (i in folder) {
+  dir.create(i, showWarnings = T, recursive= T)
+  rm(i)
+}
+
+# lister les scripts
+files <- list.files(path = ".", pattern = "^[0-9]+.*\\.R$", full.names = TRUE, recursive = T)
+file.rename(files, file.path("analyse", basename(files)))
+list.files("analyse", pattern="\\.R$")
+
+# charger package et fonctions
+devtools::install_deps(upgrade =  'never')
+devtools::load_all()
+
+# analysis:
+source("R/RUN.R")
+RUN("analyse/01.formate_data.R")
+RUN("analyse/02.origin_fix.R")
+RUN("analyse/03.animation.R")
+RUN("analyse/04.mean_difference_and_ANOVA.R")

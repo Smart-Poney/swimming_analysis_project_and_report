@@ -1,0 +1,229 @@
+#
+# 25/02/26 - 01.formate_data.R
+#
+# import and trasnfrom both dataset formats MATLAB and ImageJ
+# visualize formated data coordinates
+#
+# autor: FG    
+# project : comparison_digitalization_method
+# latest modification : 22/06/2026
+#
+
+# library: ----
+rm(list=setdiff(ls(), "RUN"))
+library(readxl)
+
+# folder_path ----
+input_folder <- "data"
+input_j <- "data/imagej" 
+input_m <- "data/matlab"
+output_folder <- "output/formated_data"
+
+# list and transfrom csv for ImageJ ----
+jfiles <- list.files(input_j, pattern = "\\.csv$", full.names = TRUE, recursive = T)
+jfiles <- jfiles[!grepl("data/imagej/rep4", jfiles)]
+mod <- list.files("output/rep4", pattern = "\\.csv$", full.names = TRUE, recursive = T)
+jfiles <- c(jfiles, mod)
+# print(jfiles)
+
+for (file_path in jfiles) {
+  
+  df <- read.csv(file_path, header = FALSE, sep=",", col.names = c("points","Image", "X", "Y"), stringsAsFactors = FALSE)
+  df <- df[-1,]
+  dir <- basename(dirname(file_path))
+  name <- tools::file_path_sans_ext(basename(file_path))
+  name <- file.path(output_folder, paste0(dir, "_", name, "_imagej.csv"))
+  write.csv(df, name, row.names = FALSE, quote=F)
+  rm(df, name, file_path)
+
+}
+
+
+# list and transform excel for MATLAB ----
+mfiles <- list.files(input_m, pattern = "\\.xlsx?$", full.names = TRUE, recursive = T)
+for (filepath in mfiles){
+  
+  df <- read_excel(filepath, col_names = TRUE)
+  df <- as.data.frame(df)
+  dir <- basename(dirname(filepath))
+  n_rows <- nrow(df)
+  n_cols <- ncol(df)
+  n_frames <- n_cols / 2
+  points <- rep(1:n_rows, times = n_frames)
+  frame <- rep(1:n_frames, each = n_rows)
+  X <- numeric(n_rows * n_frames)
+  Y <- numeric(n_rows * n_frames)
+  k <- 1
+  for (f in 1:n_frames) {
+    col_x <- (f - 1) * 2 + 1
+    col_y <- col_x + 1
+    
+    X[k:(k + n_rows - 1)] <- df[[col_x]]
+    Y[k:(k + n_rows - 1)] <- df[[col_y]]
+    
+    k <- k + n_rows
+  }
+  df <- data.frame(
+    points = points,
+    X = X,
+    Y = Y,
+    frame = frame
+  )
+  
+  name <- tools::file_path_sans_ext(basename(filepath))
+  n <- nrow(df)
+  image_index <- ceiling(seq_len(n) / 200)
+  image_number <- sprintf("%05d", image_index)
+  ID <- paste0(name, "-", image_number, ".jpg")
+  df$Image <- ID
+  df <- df[,-4]
+  df <- df[ , c("points", "Image", "X", "Y")]
+  name <- file.path(output_folder, paste0(dir, "_",name, "_matlab.csv"))
+  options( digits = 5)
+  write.csv(df, name, row.names = FALSE, quote=F)
+  rm(filepath, df, col_x, col_y, f, Frame, k, n_cols, n_frames, n_rows, name, ID, X, Y, dir, frame, n, points, image_number, image_index)
+  
+}
+
+rep4files <- list.files(output_folder, pattern = "rep4", full.names = TRUE, recursive = T)
+matfiles <- list.files(output_folder, pattern = "matlab", full.names = TRUE, recursive = T)
+rep4mfiles <- intersect(matfiles, rep4files)
+
+for (path in rep4mfiles){ # reformater les matlab 15 points
+ 
+  mat4 <- read.csv(path, header = T)
+  prefix <- sub("-.*", "", mat4$Image[1])
+  img_index <- ceiling(seq_len(nrow(mat4)) / 15)
+  img_num <- sprintf("%05d", img_index)
+  mat4$Image <- paste0(prefix, "-", img_num, ".jpg")
+  write.csv(mat4, path, row.names = FALSE, quote=F)
+
+}
+
+#
+# visualization of data ----
+#
+
+output_folder <- "figure"
+
+# importation et mix
+fs1 <- list.files(input_folder, pattern=c("206_fs1"), full.names=T)
+fs2 <- list.files(input_folder, pattern=c("206_fs2"), full.names=T)
+fs3 <- list.files(input_folder, pattern=c("206_fs3"), full.names=T)
+
+df1 <- read.csv("output/formated_data/clara_206_fs3_imagej.csv", header=T) 
+df2 <- read.csv("output/formated_data/lili_206_fs3_imagej.csv", header=T)
+df3 <- read.csv("output/formated_data/maxime_206_fs3_imagej.csv", header=T)
+df4 <- read.csv("output/formated_data/rep2_206_fs3_imagej.csv", header=T) 
+
+df5 <- read.csv("output/formated_data/clara_206_fs3_matlab.csv", header=T) 
+df6 <- read.csv("output/formated_data/lili_206_fs3_matlab.csv", header=T) 
+df7 <- read.csv("output/formated_data/maxime_206_fs3_matlab.csv", header=T) 
+df8 <- read.csv("output/formated_data/rep2_206_fs3_matlab.csv", header=T) 
+
+plot(df1$X, df1$Y,
+     col = "red", pch = 16, asp = 1, cex=0.4,
+     main = "Superposition des points",
+     xlab = "X", ylab = "Y")
+
+points(df2$X, df2$Y,
+       col = "blue", pch = 1, cex=0.4)
+points(df3$X, df3$Y,
+       col = "green", pch = 1, cex=0.4)
+points(df4$X, df4$Y,
+       col = "purple", pch = 1, cex=0.4)
+
+
+plot(df5$X, df5$Y,
+     col = "red", pch = 16, asp = 1, cex=0.4,
+     main = "Superposition des points",
+     xlab = "X", ylab = "Y")
+
+points(df6$X, df6$Y,
+       col = "blue", pch = 1, cex=0.4)
+points(df7$X, df7$Y,
+       col = "green", pch = 1, cex=0.4)
+points(df8$X, df8$Y,
+       col = "purple", pch = 1, cex=0.4)
+
+## comparison MATLAb vs ImageJ
+clarajfiles <- list.files(input_folder, pattern="clara.*206.*imagej", full.names=T)
+maximejfiles <- list.files(input_folder, pattern="maxime.*206.*imagej", full.names=T)
+lilijfiles <- list.files(input_folder, pattern="lili.*206.*imagej", full.names=T)
+rep2jfiles <- list.files(input_folder, pattern="rep2.*206.*imagej", full.names=T)
+claramfiles <- list.files(input_folder, pattern="clara.*206.*matlab", full.names=T)
+maximemfiles <- list.files(input_folder, pattern="maxime.*206.*matlab", full.names=T)
+lilimfiles <- list.files(input_folder, pattern="lili.*206.*matlab", full.names=T)
+rep2mfiles <- list.files(input_folder, pattern="rep2.*206.*matlab", full.names=T)
+
+ID_clara <- gsub("^clara_|_imagej\\.csv$", "", basename(clarajfiles))
+ID_maxime <- gsub("^maxime_|_imagej\\.csv$", "", basename(maximejfiles))
+ID_lili <- gsub("^lili_|_imagej\\.csv$", "", basename(lilijfiles))
+ID_rep2 <- gsub("^rep2_|_imagej\\.csv$", "", basename(rep2jfiles))
+
+# figure pour comparaison :
+pdf(paste0(output_folder,"/comparaison_methode.pdf"))
+
+frames <- unique(df1$Image)
+n_frames <- length(frames)
+par(mfrow = c(2, n_frames), mar = c(2,2,2,1))
+Xjrange <- range(c(df1$X, df2$X), na.rm = TRUE) + c(-10,10)
+Yjrange <- range(c(df1$Y, df2$Y), na.rm = TRUE) + c(-10,10)
+Xmrange <- range(c(df5$X, df6$X), na.rm = TRUE) + c(-10,10)
+Ymrange <- range(c(df5$Y, df6$Y), na.rm = TRUE) + c(-10,10)
+
+for (p in seq(1, n_frames, by=3)) {
+  
+  par(mfrow=c(1,2), mar=c(3,3,2,1))
+  
+  for (i in p:min(p+2, n_frames)) {
+    
+    frame <- frames[i]
+    
+    ## MAGEJ
+    col_img <- ifelse(df1$points[df1$Image == frame] == 1, "green", "#D82C80")
+    col_mat <- ifelse(df2$points[df2$Image == frame] == 1, "green", "#005080")
+    
+    plot(df1$X[df1$Image==frame], df1$Y[df1$Image==frame],
+         col = col_img, pch = 1, asp = 1,
+         main = paste("IMAGEJ - frame", i),
+         xlab = "X", ylab = "Y",
+         xlim=Xjrange, ylim=Yjrange, cex=0.01)
+    
+    points(df2$X[df2$Image==frame], df2$Y[df2$Image==frame],
+           col = col_mat, pch = 2, cex=0.01)
+    
+    points(df3$X[df3$Image==frame], df3$Y[df3$Image==frame],
+           col = "#99E480", pch = 3, cex=0.01)
+    
+    points(df4$X[df4$Image==frame], df4$Y[df4$Image==frame],
+           col = "#825080", pch = 4, cex=0.01)
+    
+    ## MATLAB 
+    col_img <- ifelse(df5$points[df5$Image == frame] == 1, "green", "#D82C80")
+    col_mat <- ifelse(df6$points[df6$Image == frame] == 1, "green", "#005080")
+    
+    plot(df5$X[df5$Image==frame], df5$Y[df5$Image==frame],
+         col = col_img, pch = 1, asp = 1,
+         main = paste("MATLAB - frame", i),
+         xlab = "X", ylab = "Y",
+         xlim=Xmrange, ylim=Ymrange, cex=0.01)
+    
+    points(df6$X[df6$Image==frame], df6$Y[df6$Image==frame],
+           col = col_mat, pch = 2, cex=0.01)
+    
+    points(df7$X[df7$Image==frame], df7$Y[df7$Image==frame],
+           col = "#99E480", pch = 3, cex=0.01)
+    
+    points(df8$X[df8$Image==frame], df8$Y[df8$Image==frame],
+           col = "#825080", pch = 4, cex=0.01)
+    
+  }
+}
+
+dev.off()
+
+# coordinates don't match on .pdf, seems to have error in X/Y axis
+# transformation/translation is needed
+
+## END SCRIPT 01_formate_data.R

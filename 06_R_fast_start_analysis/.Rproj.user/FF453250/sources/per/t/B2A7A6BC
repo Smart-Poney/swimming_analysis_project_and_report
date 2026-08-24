@@ -1,0 +1,27 @@
+{
+    "id": "B2A7A6BC",
+    "path": "~/swimming_analysis_project_and_report/06_R_fast_start_analysis/analyse/06.statistic_models_results.R",
+    "project_path": "analyse/06.statistic_models_results.R",
+    "type": "r_source",
+    "hash": "1941349609",
+    "contents": "",
+    "dirty": false,
+    "created": 1782825396777.0,
+    "source_on_save": false,
+    "relative_order": 11,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "19,16",
+        "scrollLine": "9",
+        "docOutlineVisible": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782226658,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782226658,
+    "read_only": false,
+    "read_only_alternatives": []
+}

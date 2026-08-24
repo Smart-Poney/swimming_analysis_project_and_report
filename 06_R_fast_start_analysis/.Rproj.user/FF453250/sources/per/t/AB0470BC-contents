@@ -1,0 +1,18 @@
+############################################################
+# Basic Compendium
+# FG
+# make.R
+############################################################
+
+# create directories ----
+reps <- c("data", "analyse", "R", "output", "reference")
+lapply(reps, dir.create, showWarnings = FALSE)
+
+# install the project dependencies listed in DESCRIPTION ----
+devtools::install_deps(upgrade =  'never')
+
+# load the project functions ----
+devtools::load_all()
+
+# download the project data ----
+source("analyse/01_download-data.R")

@@ -1,0 +1,42 @@
+---
+title: "README"
+author: "FG"
+date: "2026-07-01"
+output: html_document
+---
+
+# R_fish_silhouette_animation
+
+## Présentation
+
+Ce dossier contient les scripts utilisés pendatn l'étude pour animer les mouvements du poisson pendant les évenements de fast-starts et les phases de comportement (cf rapport) en construisant les silouhettes à partir des body midlines numérisées.
+
+A partir des données brutes de MATLAB et EthoVision, deux scripts sont utilisées pour mieux visualier, comprendre les cinématiques de déplacements des corps des individus dans un milieu aqueux en conditions artificielles. Le processus d'animation peut prendre du temps selon la longueur et qualité des animations voulues.
+
+
+premier script : **01_fast_start_animation_whole_fish** utilise les données brutes de MATLAB contenues dans *data/raw* deuxième script : **02_animation_group** utilise les données brutes de EthoVision contenues dans *data/area*
+
+## Lancer le processus d'animation
+
+Run :
+
+``` r
+source("make.R")
+```
+
+ou Run les scripts individuellement :
+
+``` r
+source("script/01_fast_start_animation_whole_fish.R")
+source("script/02_animation_group.R")
+```
+
+## Auteur
+
+Felix Guillaud
+
+Mail: [felix.guillaud.work\@gmail.com](mailto:felix.guillaud.work@gmail.com){.email}
+
+## License
+
+This project is distributed under the MIT License.

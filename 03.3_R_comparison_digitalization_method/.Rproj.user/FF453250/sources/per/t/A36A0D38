@@ -1,0 +1,26 @@
+{
+    "id": "A36A0D38",
+    "path": "~/swimming_analysis_project_and_report/03.3_R_comparison_digitalization_method/analyse/02_origin_fix.R",
+    "project_path": "analyse/02_origin_fix.R",
+    "type": "r_source",
+    "hash": "2901652340",
+    "contents": "",
+    "dirty": false,
+    "created": 1782122810778.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "90,11",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782123776,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782123776635,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,26 @@
+{
+    "id": "FD674935",
+    "path": "~/Projet/R analyse Ptut/00_TEST_ENVELOPPE.R",
+    "project_path": "00_TEST_ENVELOPPE.R",
+    "type": "r_source",
+    "hash": "598464475",
+    "contents": "",
+    "dirty": false,
+    "created": 1776761822312.0,
+    "source_on_save": false,
+    "relative_order": 14,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "167,0",
+        "scrollLine": "139"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1776761391,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1776761391,
+    "read_only": false,
+    "read_only_alternatives": []
+}

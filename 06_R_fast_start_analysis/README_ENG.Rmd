@@ -1,0 +1,81 @@
+---
+title: "README_ENG"
+author: "FG"
+date: "2026-06-23"
+output: html_document
+---
+
+# fast_start_analysis
+
+## Overview
+
+This repository contains the workflow for data sorting, statistical analysis and statistical modelling of fast start movements. Using spatial coordinates of the fish body midlines acquired with MATLAB during fast-start actuation (see `/fast_start_acquisition/README_ENG.txt`). In this project we first collect the data from MATLAB, compare angular ratio of curvature before determining the center of mass (CM) position, the point where forces apply during fast-start. This done, we use it to calculate distance, speed, acceleration and other time-related metrics. With those data, we use statistical analysis and modelling to detect the potential effect of treatment on the fish swimming capacities of manoeuvring in artificial conditions (no flow) using juveniles subcarangiforms (*Salmo trutta*).
+
+------------------------------------------------------------------------
+
+## Project structure
+
+``` text
+fast_start_analysis/
+│
+├── analyse/              # scripts
+├── data/                 # raw coordinates data from MATLAB
+├── figure/               # graphs and animations'
+├── models/               # models output, tables, graphes
+├── output/               # formated data and tables
+├── R/                    # custom functions
+├── supplementary_data/   # metadata on individuals
+│
+├── create.R              # project initialization script
+├── make.R                # main pipeline execution script
+├── DESCRIPTION           # project metadata and dependencies
+├── README_FR.md          # french version
+└── README_ENG.md
+```
+
+------------------------------------------------------------------------
+
+## Analysis structure
+
+``` text
+fast_start_analysis/analyse/
+│
+├── 01.import_data.R                                     # gather MATLAb data into a single file    
+├── 02.angular_ratio_comparison.R                        # create curvature/segment ratio/angle
+├── 03.acceleration_distance_position_metrics.R          # calcul position-time related metrics
+├── 04.GIF.R                                             # animate digitalization process
+├── 05.statistic_models_REML.R                           # statistical modelling using REML method
+├── 06.statistic_models_results.R                        # modelling results
+├── 07.statistic_models_ML.R                             # statistical modelling using ML method
+├── 08.GAM_table.R                                       # figure for modelling results
+└── 09.statistical_table_behaviour_fast_start_steady.R   # stat for each individual with every analysis
+```
+
+------------------------------------------------------------------------
+
+## Reproducibility
+
+Run:
+
+``` r
+source("make.R")
+```
+
+Or run scripts individually:
+
+``` r
+source("analyse/01.import_data.R")
+source("analyse/02.angular_ratio_comparison.R")
+...
+source("analyse/09.statistical_table_behaviour_fast_start_steady.R")
+```
+
+## Author
+
+Felix Guillaud
+
+Mail: [felix.guillaud.work\@gmail.com](mailto:felix.guillaud.work@gmail.com){.email}
+
+## License
+
+This project is distributed under the MIT License.

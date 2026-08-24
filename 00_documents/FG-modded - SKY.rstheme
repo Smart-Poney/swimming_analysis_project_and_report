@@ -1,0 +1,190 @@
+/* rs-theme-name: FG-modded-SKY */
+/* rs-theme-is-dark: TRUE */
+.ace_gutter {
+  background: #A1A1A1;
+  color: #CC2727
+}
+.ace_print-margin {
+  width: 1px;
+  background: #CCCCCC
+}
+.ace_editor, .ace_editor_theme .profvis-flamegraph, .ace_editor_theme {
+  background-color: #D1D1D1;
+  color: #000000
+}
+.ace_cursor {
+  color: #000000
+}
+.ace_marker-layer .ace_selection {
+  background: #A6C8FF
+}
+.ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px #FFFFFF;
+  border-radius: 2px;
+}
+.ace_marker-layer .ace_step {
+  background: rgb(255, 235, 150)
+}
+
+
+/* modifier selection paire bracket en jaune */
+.ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid #FFD700;
+  background-color: rgba(255, 215, 0, 0.5);
+}
+/* parenthèses normales */
+.ace_paren {
+  color: #666666;
+}
+
+
+.ace_marker-layer .ace_active-line {
+  background: #EFEFEF
+}
+.ace_gutter-active-line {
+  background-color: #EFEFEF
+}
+.ace_marker-layer .ace_selected-word {
+  border: 1px solid #D0D0D0
+}
+.ace_invisible {
+  color: #BBBBBB
+}
+.ace_entity.ace_name.ace_tag,
+.ace_meta,
+.ace_meta.ace_tag,
+.ace_storage {
+  color: #C90000
+}
+
+
+/* modifie function, marche pas*/
+.ace_support.ace_function {
+  color: #CC8800
+}
+
+
+/* modifie if, library etc ...*/
+.ace_keyword {
+  color: #C90000
+}
+/* modifie fonction quand mot suivi de ()*/
+/* mot suivi de "(" → probablement fonction */
+.ace_identifier + .ace_paren.ace_lparen {
+  color: #CC8800;
+}
+/* améliore visibilité du nom */
+.ace_identifier {
+  color: #333333;
+}
+
+
+.ace_constant,
+.ace_constant.ace_character,
+.ace_constant.ace_character.ace_escape,
+.ace_constant.ace_other,
+.ace_support.ace_type {
+  color: #0088AA
+}
+.ace_constant.ace_character.ace_escape {
+  color: #00AA00
+}
+.ace_constant.ace_language {
+  color: #CC8800
+}
+.ace_constant.ace_library,
+.ace_string,
+.ace_support.ace_constant {
+  color: #00AA00
+}
+.ace_constant.ace_numeric {
+  color: #2E8B57
+}
+.ace_identifier {
+  color: #333333;
+}
+.ace_variable {
+  color: #0000CC;
+}
+.ace_invalid {
+  color: #FFFFFF;
+  background-color: #990000
+}
+.ace_fold {
+  background-color: #FC6F09;
+  border-color: #333333
+}
+.ace_comment {
+  font-style: italic;
+  color: #7A00CC
+}
+.ace_entity.ace_other.ace_attribute-name {
+  color: #999900
+}
+.ace_indent-guide {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWMQFxf3ZXB1df0PAAdsAmERTkEHAAAAAElFTkSuQmCC) right repeat-y
+}
+.nocolor.ace_editor .ace_line span {
+  color: #fc6f09 !important;
+}
+.ace_marker-layer .ace_foreign_line {
+  position: absolute;
+  z-index: -1;
+  background-color: #F0F0F0;
+}
+.ace_node-selector {
+  background-color: #fb6f1c
+}
+.ace_comment-highlight {
+  color: #4D4333;
+  background-color: #D1B78A;
+}
+.ace_marker-layer .ace_active_debug_line {
+  position: absolute;
+  z-index: -1;
+}
+.ace_marker-layer .ace_find_line {
+  position: absolute;
+  z-index: -1;
+  background-color: #E0E0E0;
+}
+.ace_console_error {
+  background-color: #E0E0E0;
+}
+.ace_keyword.ace_operator {
+  color: #0066CC !important;
+}
+.terminal {
+  background-color: #FFDEDE;
+  color: #333333;
+  font-feature-settings: "liga" 0;
+  position: relative;
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+.terminal.xterm-cursor-style-block.focus:not(.xterm-cursor-blink-on) .terminal-cursor {
+  background-color: #000;
+  color: #fff;
+}
+.terminal.focus.xterm-cursor-style-bar:not(.xterm-cursor-blink-on) .terminal-cursor::before,
+.terminal.focus.xterm-cursor-style-underline:not(.xterm-cursor-blink-on) .terminal-cursor::before {
+  content: '';
+  position: absolute;
+  background-color: #000;
+}
+.terminal:not(.focus) .terminal-cursor {
+  outline: 1px solid #000;
+  outline-offset: -1px;
+}
+.terminal .xterm-selection div {
+   position: absolute;
+   background-color: #999;
+}
+.terminal .xterm-viewport {
+  background-color: #FFFFFF;
+  overflow-y: scroll;
+}
+.xtermInvertColor { color: #FFFFFF; }
+.xtermInvertBgColor { background-color: #333333; }

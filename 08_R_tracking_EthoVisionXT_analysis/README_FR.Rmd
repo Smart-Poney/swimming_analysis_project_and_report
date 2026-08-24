@@ -1,0 +1,78 @@
+---
+title: "README_FR"
+author: "FG"
+date: "2026-06-30"
+output: html_document
+---
+
+# tracking_EthoVisionXT_analysis
+
+## Présentation
+
+Ce dossier contient les scripts nécessaire au tri et l'analyse des données de tracking extraites pendant les tests de comportement (cf rapport), en utilisant les coordonnées spatiales du poisson (tête-centre-queue) extraites avec EthoVision (cf `/EthoVisionXT_informaiton/README.txt`). Dans ce projet, sont d'abord collectées les données d'EthoVision, puis on explore les différentes données et métriques collectées automatiquement. On crée ensuite différentes variables (ratio d'angle de courbure par exemple) et on anime les données pour checker que les calculs sont corrects. On utilise ensuite des analyses exploratoires (Random Forest) pour trouver les meilleures variables présentant un potientiel intéressant dans la classification des individus dans l'un des deux groupes (cf rapport). On espère détecter des différences potentielles en terme de comportement pendant les tests de manoeuvrabilité 'unsteady swimming' en conditions artificielles sans courant en utilisant des individus subcarabngirfomes juvéniles (*Salmo trutta*)
+
+------------------------------------------------------------------------
+
+## Structure du projet
+
+``` text
+tracking_EthoVisionXT_analysis/
+│
+├── analyse/              # scripts
+├── data/                 # data et coordonnées brutes sorties de EthoVision
+├── data_interpolated/    # data et coordonnées brutes interpollées avec EthoVision 
+├── figure/               # graphiques et figures
+├── output/               # sorties et tables
+├── R/                    # fonctions customisées
+├── supplementary_data/   # metadata sur les individus
+│
+├── create.R              # script d'initialisation du projet
+├── make.R                # script pour lancer les analyses complètes
+├── DESCRIPTION           # metadata du projet and pakages/dépendances
+├── README_FR.md          
+└── README_ENG.md         # version anglaise
+```
+
+------------------------------------------------------------------------
+
+## Structure des analyses
+
+``` text
+tracking_EthoVisionXT_analysis/analyse/
+│
+├── 01.import_and_formate_data.R      # trier et formater les données brutes d'EthoVision    
+├── 02.data_exploration.R             # explorer les données
+├── 03.metrics_creation.R             # créer les variables d'interêt
+├── 04.GIF_for_angle_visualization.R  # GIF animation pour vérifier le bon calcul des variables
+├── 05.ordination_forest.R            # analyse exploratoire par Random Forest
+└── 06.statistic_models.R             # modèles statistiques (pas abordés dans le rapport)
+```
+
+------------------------------------------------------------------------
+
+## Reproductibilité
+
+Run:
+
+``` r
+source("make.R")
+```
+
+Ou Run les scripts individuellement:
+
+``` r
+source("analyse/01.import_and_formate_data.R")
+source("analyse/02.data_exploration.R")
+...
+source("analyse/06.statistic_models.R")
+```
+
+## Auteur
+
+Felix Guillaud
+
+Mail: [felix.guillaud.work\@gmail.com](mailto:felix.guillaud.work@gmail.com){.email}
+
+## License
+
+This project is distributed under the MIT License.

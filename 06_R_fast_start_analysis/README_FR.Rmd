@@ -1,0 +1,81 @@
+---
+title: "README_FR"
+author: "FG"
+date: "2026-06-23"
+output: html_document
+---
+
+# fast_start_analysis
+
+## Présentation
+
+Ce répertoire contient le flux de travail pour le tri des données, l'analyse statistique et la modélisation statistique des mouvements de démarrage rapide. Il utilise les coordonnées spatiales de la ligne médiane du corps des poissons, acquises avec MATLAB lors de l'activation du démarrage rapide (voir `/fast_start_acquisition/README_ENG.txt`). Dans ce projet, nous collectons d'abord les données à partir de MATLAB, puis comparons le rapport angulaire de courbure avant de déterminer la position du centre de masse (CM), point d'application des forces lors du démarrage rapide. Nous l'utilisons ensuite pour calculer la distance, la vitesse, l'accélération et d'autres paramètres temporels. À partir de ces données, nous effectuons des analyses statistiques et des modélisations stats afin de détecter l'effet potentiel d'un traitement sur les capacités de nage et de manœuvre des juvéniles de truite subcaranigiforme (*Salmo trutta*) en conditions artificielles (sans courant).
+
+------------------------------------------------------------------------
+
+## Structure du projet
+
+``` text
+fast_start_analysis/
+│
+├── analyse/              # scripts
+├── data/                 # données brutes de MATLAB
+├── figure/               # graphes et animations
+├── models/               # sorties de modèles, tables et graphiques
+├── output/               # données formatées et tables
+├── R/                    # fonctions customisées
+├── supplementary_data/   # metadata sur les individus
+│
+├── create.R              # script d'initialisation du projet
+├── make.R                # script pour lancer les analyses complètes
+├── DESCRIPTION           # metadata du projet and pakages/dépendances
+├── README_FR.md          
+└── README_ENG.md         # version anglaise
+```
+
+------------------------------------------------------------------------
+
+## Structure des analyses
+
+``` text
+fast_start_analysis/analyse/
+│
+├── 01.import_data.R                                     # importer, trier et rassembler les données MATLAB   
+├── 02.angular_ratio_comparison.R                        # créer les variables courbure/segment/ratio/angle
+├── 03.acceleration_distance_position_metrics.R          # calcul des variables temps et position dépendantes
+├── 04.GIF.R                                             # animer le processus de digitalization des body midlines
+├── 05.statistic_models_REML.R                           # modélisation statistique avec méthode d'estimation REML
+├── 06.statistic_models_results.R                        # résultats des modèles
+├── 07.statistic_models_ML.R                             # modélisation statistique avec méthode d'estimation ML
+├── 08.GAM_table.R                                       # figures pour les résultats de modèles
+└── 09.statistical_table_behaviour_fast_start_steady.R   # création d'une table récapitulatrice de variables (variance, moyenne) par individu avec les variables de chaque analyse
+```
+
+------------------------------------------------------------------------
+
+## Lancer les analyses
+
+Run:
+
+``` r
+source("make.R")
+```
+
+Ou bien lancer individuellement, Run:
+
+``` r
+source("analyse/01.import_data.R")
+source("analyse/02.angular_ratio_comparison.R")
+...
+source("analyse/09.statistical_table_behaviour_fast_start_steady.R")
+```
+
+## Auteur
+
+Felix Guillaud
+
+Mail: [felix.guillaud.work\@gmail.com](mailto:felix.guillaud.work@gmail.com){.email}
+
+## License
+
+Ce projet est distribué sous la licence MIT.

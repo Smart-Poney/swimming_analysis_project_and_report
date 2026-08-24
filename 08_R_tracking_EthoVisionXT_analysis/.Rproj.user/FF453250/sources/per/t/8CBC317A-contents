@@ -1,0 +1,78 @@
+---
+title: "README_ENG"
+author: "FG"
+date: "2026-06-24"
+output: html_document
+---
+
+# tracking_EthoVisionXT_analysis
+
+## Overview
+
+This repository contains the workflow for data sorting and statistical analysis of tracking movements during behaviour recording. Using spatial coordinates of the fish head, center and tail acquired with EthoVision during unsteady swimming tests (see `/EthoVisionXT_informaiton/README.txt`). In this project we first collect the data from EthoVision, explore the data and metrics collected automatically, we then create different variables, angular ratio of curvature for example and animate the data to check the correct calculations. We then use exploratory analysis (Random Forest) to find the best metric in classifying individuals in one of the two treatment conditions (see report). We hope to detect potential difference in behaviour during the unsteady swimming test in artificial conditions (no flow) using juveniles subcarangiforms (*Salmo trutta*).
+
+------------------------------------------------------------------------
+
+## Project structure
+
+``` text
+tracking_EthoVisionXT_analysis/
+│
+├── analyse/              # scripts
+├── data/                 # raw coordinates data from EthoVision
+├── data_interpolated/    # raw coordinates data interpolated with EthoVision 
+├── figure/               # graphs and figures
+├── output/               # outputs and tables
+├── R/                    # custom functions
+├── supplementary_data/   # metadata on individuals
+│
+├── create.R              # project initialization script
+├── make.R                # main pipeline execution script
+├── DESCRIPTION           # project metadata and dependencies
+├── README_FR.md          # french version
+└── README_ENG.md
+```
+
+------------------------------------------------------------------------
+
+## Analysis structure
+
+``` text
+tracking_EthoVisionXT_analysis/analyse/
+│
+├── 01.import_and_formate_data.R      # gather, sort and formate raw data from EthoVision    
+├── 02.data_exploration.R             # explore the data
+├── 03.metrics_creation.R             # calculate the variables of interest
+├── 04.GIF_for_angle_visualization.R  # GIF animation to check the correct calcul of the variables
+├── 05.ordination_forest.R            # exploratory analysis with Random Forest
+└── 06.statistic_models.R             # statistical models (not mentionned in the report)
+```
+
+------------------------------------------------------------------------
+
+## Reproducibility
+
+Run:
+
+``` r
+source("make.R")
+```
+
+Or run scripts individually:
+
+``` r
+source("analyse/01.import_and_formate_data.R")
+source("analyse/02.data_exploration.R")
+...
+source("analyse/06.statistic_models.R")
+```
+
+## Author
+
+Felix Guillaud
+
+Mail: [guillaudfelix\@gmail.com](mailto:guillaudfelix@gmail.com){.email}
+
+## License
+
+This project is distributed under the MIT License.

@@ -1,0 +1,33 @@
+Package: R_fast_start_analysis
+Title: Fast-start analysis
+Version: 0.0.0.9000
+Authors@R: 
+    person("Felix", "GUILLAUD", , "felix.guillaud@gmail.com", role = c("aut", "cre"))
+Description: Data analysis of the fast start coordinates obtained with matlab, statistical analysis and modelling.This repository contains the workflow for data sorting, statistical analysis and statistical modelling of fast start movements. Using spatial coordinates of the fish body midlines acquired with MATLAB during fast-start actuation (see /fast_start_acquisition/README_ENG.txt). In this project we first collect the data from MATLAB, compare angular ratio of curvature before determining the center of mass (CM) position, the point where forces apply during fast-start. This done, we use it to calculate distance, speed, acceleration and other time-related metrics. With those data we statistical analysis and modelling to detect the potential effect of treatment on the fish swimming capacities of manoeuvring in artificial conditions (no flow) using juveniles subcarngiforms (Salmo trutta).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports: 
+    AICcmodavg,
+    animation,
+    bbmle,
+    car,
+    dplyr,
+    gam,
+    gganimate,
+    ggExtra,
+    ggplot2,
+    ggpubr,
+    gratia,
+    itsadug,
+    lme4,
+    mgcv,
+    MuMIn,
+    patchwork,
+    readxl,
+    scales,
+    tidyr,
+    usethis,
+    viridis,
+    zoo

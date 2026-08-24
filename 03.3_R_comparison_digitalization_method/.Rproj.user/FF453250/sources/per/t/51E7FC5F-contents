@@ -1,0 +1,116 @@
+#
+# 26/02/26 - 03_animation.R
+#
+# to visualize coordinates after transformation in coordinate system
+# to visualize differences between the two method
+#
+# autor: FG
+# project: comparison_digitalization_method
+# latest modification : 22/06/2026
+#
+
+rm(list=setdiff(ls(), "RUN"))
+
+# library:
+library(animation)
+ani.options(ani.viewer = NULL, autobrowse = FALSE) # pour éviter de visualiser tous les GIFs
+library(here)
+
+# folder_path ----
+input_folder1 <- "output/formated_data"
+input_folder2 <- "output/transfo_data"
+output_folder <- "figure/animation" #utiliser un chemin absolu sinon SaveGIF ne marche pas
+
+# importation et mix ----
+jfiles <- list.files(input_folder1, pattern="_imagej\\.csv$", full.names=T)
+mfiles <- list.files(input_folder2, pattern="_matlab\\.csv$", full.names=T)
+
+ID_j <- gsub("_imagej\\.csv$", "", basename(jfiles))
+ID_m <- gsub("_matlab\\.csv$", "", basename(mfiles))
+ID_intersect <- intersect(ID_j, ID_m)
+
+all_frames <- list()
+frame_counter <- 1
+
+# create GIF for each paired measure ----
+for (inter in ID_intersect) {
+  
+  file_imagej <- jfiles[grepl(paste0(inter, "_imagej.csv$"), jfiles)]
+  file_matlab <- mfiles[grepl(paste0(inter, "_matlab.csv$"), mfiles)]
+  dfmatlab <- read.csv(file_matlab)
+  dfimageJ <- read.csv(file_imagej)
+  
+  plot(dfimageJ$X, dfimageJ$Y,
+       col = "red", pch = 16, asp = 1,
+       main = "Superposition des points",
+       xlab = "X", ylab = "Y")
+  
+  points(dfmatlab$X, dfmatlab$Y,
+         col = "blue", pch = 1)
+  
+  legend("topright",
+         legend = c("ImageJ", "Matlab transformé"),
+         col = c("red", "blue"),
+         pch = c(16,1))
+  
+  # PLOT par frame
+  frames <- unique(dfimageJ$Image)
+  n_frames <- length(frames)
+  plots <- vector("list", n_frames)
+  Xrange <- range(c(dfimageJ$X, dfmatlab$X), na.rm = TRUE) + c(-10,10)
+  Yrange <- range(c(dfimageJ$Y, dfmatlab$Y), na.rm = TRUE) + c(-10,10)
+  
+  for (i in seq_along(frames)) {
+    
+    frame <- frames[i]
+    
+    col_img <- ifelse(dfimageJ$points[dfimageJ$Image == frame] == 1, "green", "red")
+    col_mat <- ifelse(dfmatlab$points[dfmatlab$Image == frame] == 1, "green", "blue")
+    
+    plot(dfimageJ$X[dfimageJ$Image==frame], dfimageJ$Y[dfimageJ$Image==frame],
+                   col = col_img, pch = 16, asp = 1,
+                   main = paste ("comparaison",inter, ", frame", i),
+                   xlab = "X", ylab = "Y",
+                   xlim=Xrange, ylim=Yrange)
+    
+    points(dfmatlab$X[dfmatlab$Image==frame], dfmatlab$Y[dfmatlab$Image==frame],
+           col = col_mat, pch = 1)
+    
+    legend( "topright",
+            #x = Xrange[1] + 0.05 * diff(Xrange), y = Yrange[2] - 0.05 * diff(Yrange),
+            legend = c("Head", "ImageJ", "MATLAB"),
+            col = c("green", "red", "blue"),
+            pch = c(16,16,1),
+            bty = "n")
+    
+    plots[[i]] <- recordPlot()
+    
+  }
+  
+  gif_name <- here("figure", "animation", paste0(inter, "_animation.gif"))
+  # gif_name <- file.path(output_folder, paste0(inter, "_animation.gif"))
+  saveGIF({
+    for (f in 1:n_frames) replayPlot(plots[[f]])
+  }, movie.name = gif_name, interval = 0.5, ani.viewer = NULL)
+
+  for (f in 1:n_frames) {
+    all_frames[[frame_counter]] <- plots[[f]]
+    frame_counter <- frame_counter + 1
+  }
+  
+  rm(Xrange, Yrange, plot_f, n_frames, invertY, inter, file_matlab, file_imagej, f, a, b, c, d, col_img, col_mat)
+  rm(df, df_matlab_transfo, dfimageJ, dfmatlab, model_x, model_y, model_y_final, model_y_inv, plots)
+  
+}
+
+# create GIF for all paired measures ----
+movie_path <- here("figure", "animation", "animation_complete.gif")
+saveGIF({
+  for (i in seq_along(all_frames)) {
+    replayPlot(all_frames[[i]])
+  }
+}, movie.name = movie_path, interval = 0.5)
+
+# on est ok pour la transformation des données, correspondance visuelle
+
+## END SCRIPT 03_animation.R

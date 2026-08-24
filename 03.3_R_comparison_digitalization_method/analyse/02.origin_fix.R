@@ -1,0 +1,95 @@
+#
+# 26/02/26 - 02.origin_fix.R
+#
+# compare the pre-transformed coordinates datasets from ImageJ and MATLAB 
+# transform the MATLAB coordinates to match the origin of the coordinate system given by ImageJ 
+# determine the relative error in pixels
+# save as a single .txt table for comparison 'compar.txt'
+#
+# autor: FG
+# project: comparison_digitalization_method
+# latest modification : 22/06/2026
+#
+
+rm(list=setdiff(ls(), "RUN"))
+
+# folder_path ----
+input_folder <- "output/formated_data"
+output_folder <- "output/transfo_data"
+
+# importation et mix ----
+jfiles <- list.files(input_folder, pattern = "_imagej\\.csv$", full.names = TRUE)
+mfiles <- list.files(input_folder, pattern = "_matlab\\.csv$", full.names = TRUE)
+ID_j <- gsub("_imagej\\.csv$", "", basename(jfiles))
+ID_m <- gsub("_matlab\\.csv$", "", basename(mfiles))
+ID_intersect <- intersect(ID_j, ID_m)
+
+for (inter in ID_intersect) {
+  
+  file_imagej <- jfiles[grepl(paste0(inter, "_imagej.csv$"), jfiles)]
+  file_matlab <- mfiles[grepl(paste0(inter, "_matlab.csv$"), mfiles)]
+  
+  dfimageJ <- read.csv(file_imagej)
+  dfmatlab <- read.csv(file_matlab)
+  
+  dfmatlab_transfo <- dfmatlab
+  
+  frames <- intersect(unique(dfimageJ$Image), unique(dfmatlab$Image))
+  
+  for (fr in frames) {
+    
+    IJ <- dfimageJ[dfimageJ$Image == fr, ]
+    ML <- dfmatlab[dfmatlab$Image == fr, ]
+    
+    if (nrow(IJ) == 0 || nrow(ML) == 0) next
+    
+    # points sorting
+    IJ <- IJ[order(IJ$points), ]
+    ML <- ML[order(ML$points), ]
+    
+    # first point
+    pIJ <- IJ[1, ]
+    pML <- ML[1, ]
+    
+    dx <- pIJ$X - pML$X
+    dy <- pIJ$Y - (-pML$Y)
+    
+    idx <- dfmatlab$Image == fr
+    
+    dfmatlab_transfo$X[idx] <- dfmatlab$X[idx] + dx
+    dfmatlab_transfo$Y[idx] <- -dfmatlab$Y[idx] + dy
+  }
+  
+  name <- file.path(output_folder, paste0(inter, "_matlab.csv"))
+  write.csv(dfmatlab_transfo, name, row.names = FALSE)
+}
+
+
+mfiles <- list.files(output_folder, pattern="_matlab\\.csv$", full.names=T)
+all_data <- c(jfiles, mfiles)
+options(scipen = 999, digits = 6)
+compar <- do.call(rbind, lapply(all_data, function(f) {
+  
+  df <- read.csv(f, stringsAsFactors = FALSE)
+  
+  # add column with the file name
+  df$source_file <- tools::file_path_sans_ext(basename(f))
+  
+  return(df)
+}))
+
+head(compar)
+tmp <- do.call(rbind, strsplit(compar$source_file, "_"))
+compar$operateur <- tmp[,1]
+compar$poisson   <- tmp[,2]
+compar$fs        <- paste0(tmp[,2], "_",tmp[,3]) 
+compar$methode   <- tmp[,4]
+rm(tmp)
+head(compar)
+compar <- compar[ , c("source_file", "Image", "points", "X", "Y", "operateur", "poisson", "fs", "methode")]
+head(compar)
+dim(compar)
+
+write.table(compar, "output/compar.txt", sep = ",", row.names = FALSE, quote = FALSE) #normalement pas d'arrondi sauf ex: 415.210 -> 415.21
+
+## END SCRIPT 02_origin_fix.R

@@ -1,0 +1,27 @@
+{
+    "id": "900C3CB9",
+    "path": "~/swimming_analysis_project_and_report/07_R_tracking_EthoVisionXT_analysis/analyse/01.import_and_formate_data.R",
+    "project_path": "analyse/01.import_and_formate_data.R",
+    "type": "r_source",
+    "hash": "3967263286",
+    "contents": "",
+    "dirty": false,
+    "created": 1782289459782.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "7,0",
+        "scrollLine": "0",
+        "docOutlineVisible": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782906250,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782906250543,
+    "read_only": false,
+    "read_only_alternatives": []
+}

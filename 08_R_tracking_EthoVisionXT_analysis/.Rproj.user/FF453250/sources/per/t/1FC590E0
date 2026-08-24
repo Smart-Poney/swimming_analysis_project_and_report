@@ -1,0 +1,27 @@
+{
+    "id": "1FC590E0",
+    "path": "~/swimming_analysis_project_and_report/07_R_tracking_EthoVisionXT_analysis/create.R",
+    "project_path": "create.R",
+    "type": "r_source",
+    "hash": "3088098424",
+    "contents": "",
+    "dirty": false,
+    "created": 1774958431444.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "13,28",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782305313,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782305313350,
+    "read_only": false,
+    "read_only_alternatives": []
+}

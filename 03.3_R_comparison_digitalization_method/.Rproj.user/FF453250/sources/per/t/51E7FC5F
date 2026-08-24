@@ -1,0 +1,26 @@
+{
+    "id": "51E7FC5F",
+    "path": "~/swimming_analysis_project_and_report/03.3_R_comparison_digitalization_method/analyse/03_animation.R",
+    "project_path": "analyse/03_animation.R",
+    "type": "r_source",
+    "hash": "3035439505",
+    "contents": "",
+    "dirty": false,
+    "created": 1782122814172.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "11,3",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782123651,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782123651608,
+    "read_only": false,
+    "read_only_alternatives": []
+}

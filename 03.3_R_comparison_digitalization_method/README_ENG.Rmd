@@ -1,0 +1,68 @@
+---
+title: "README"
+author: "FG"
+date: "2026-06-22"
+output: html_document
+---
+
+# R_comparison_digitalization_method
+
+## Overview
+
+This repository contains the R workflow used to compare the variability between two fish body midline digitization methods: a **MATLAB-based method** and an **ImageJ-based method**.
+
+After extracting coordinates of fish body midlines using MATLAb and ImageJ method (see report), coordinates are used to calculate inter-operator, inter-method, and intra-operator variability. Finally both methods are replicable and reapetable with low variability due to the operator or the method. We choose the MATLAB method for further analysis because it was smoother and already published.
+
+Coordinates extracted from both methods are used to quantify:
+
+-   **Inter-operator variability**
+-   **Intra-operator variability**
+-   **Inter-method variability**
+
+------------------------------------------------------------------------
+
+## Project structure
+
+``` text
+03_R_comparison_digitalization_method/
+│
+├── analyse/     # scripts
+├── data/        
+     ├── imagej/ # données brutes ImageJ
+     └── matlab/ # données brutes MATLAB
+├── figure/      # graphs and animations
+├── output/      # formated data and tables
+├── R/           # custom functions
+│
+├── create.R     # project initialization script
+├── make.R       # main pipeline execution script
+├── DESCRIPTION  # project metadata and dependencies
+└── README.md
+```
+
+## Reproducibility
+
+Run:
+
+``` r
+source("make.R")
+```
+
+Or run scripts individually:
+
+``` r
+source("analyse/01.formate_data.R")
+source("analyse/02.origin_fix.R")
+source("analyse/03.animation.R")
+source("analyse/04.mean_difference_and_ANOVA.R")
+```
+
+## Author
+
+Felix Guillaud
+
+Mail: [felix.guillaud.work\@gmail.com](mailto:felix.guillaud.work@gmail.com){.email}
+
+## License
+
+This project is distributed under the MIT License.

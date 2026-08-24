@@ -1,0 +1,69 @@
+---
+title: "README"
+author: "FG"
+date: "2026-07-01"
+output: html_document
+---
+
+# R_comparison_digitalization_method
+
+## Présentation
+
+Ce dossier contient le processus de travail R utilisé pour comparer la variabilité entre deux méthodes de numérisation de la ligne médiane du corps des poissons : une **méthode basée sur MATLAB** et une **méthode basée sur ImageJ**.
+
+Après l'extraction des coordonnées des lignes médianes à l'aide des méthodes MATLAB et ImageJ (cf rapport), ces coordonnées servent à calculer la variabilité inter-opérateur, inter-méthode et intra-opérateur. En conclusion, les deux méthodes sont reproductibles et répétables, présentant une faible variabilité liée à l'opérateur ou à la méthode elle-même. Nous avons retenu la méthode MATLAB pour la suite des analyses, car elle permet un tracé plus fluide et a déjà fait l'objet d'une publication.
+
+Les coordonnées extraites par ces deux méthodes sont utilisées pour quantifier :
+
+-   **La variabilité inter-opérateur**
+-   **La variabilité intra-opérateur**
+-   **La variabilité inter-méthode**
+
+------------------------------------------------------------------------
+
+## Structure du projet
+
+``` text
+03_R_comparison_digitalization_method/
+│
+├── analyse/     # scripts
+├── data/        
+     ├── imagej/ # données brutes ImageJ
+     └── matlab/ # données brutes MATLAB
+├── figure/      # graphes et animations
+├── output/      # données formatées et tables
+├── R/           # functions customisées
+│
+├── create.R              # script d'initialisation du projet
+├── make.R                # script pour lancer les analyses complètes
+├── DESCRIPTION           # metadata du projet and pakages/dépendances
+├── README_FR.md          
+└── README_ENG.md         # version anglaise
+```
+
+## Reproductibilité 
+
+Run :
+
+``` r
+source("make.R")
+```
+
+Ou Run les scripts individuellement :
+
+``` r
+source("analyse/01.formate_data.R")
+source("analyse/02.origin_fix.R")
+source("analyse/03.animation.R")
+source("analyse/04.mean_difference_and_ANOVA.R")
+```
+
+## Auteur
+
+Felix Guillaud
+
+Mail: [felix.guillaud.work\@gmail.com](mailto:felix.guillaud.work@gmail.com){.email}
+
+## License
+
+Ce projet est distribué sous la licence MIT.

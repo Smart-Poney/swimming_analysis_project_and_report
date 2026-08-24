@@ -1,0 +1,27 @@
+{
+    "id": "65828D5F",
+    "path": "~/swimming_analysis_project_and_report/07_R_tracking_EthoVisionXT_analysis/analyse/04.GIF_for_angle_visualization.R",
+    "project_path": "analyse/04.GIF_for_angle_visualization.R",
+    "type": "r_source",
+    "hash": "653206259",
+    "contents": "",
+    "dirty": false,
+    "created": 1777015294397.0,
+    "source_on_save": false,
+    "relative_order": 9,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "281,20",
+        "scrollLine": "0",
+        "docOutlineVisible": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1782908003,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1782908003607,
+    "read_only": false,
+    "read_only_alternatives": []
+}

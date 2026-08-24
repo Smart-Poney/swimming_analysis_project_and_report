@@ -1,0 +1,20 @@
+# Download project raw data
+#
+# This script will download bird and mammal species richness data and the global grid
+# from Williams et al. 2024. The files will be stored in `data/`.
+# 
+# All functions used in the script have been developed for this project
+# and can be found in the folder R/.
+#
+# FG
+
+## Download SR data ----
+
+### birds
+download_sr("bird")
+
+### mammals
+download_sr("mamm")
+
+## Download the global grid ----
+dl_grid_cells()

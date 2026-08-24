@@ -1,0 +1,26 @@
+Package: tracking_EthoVisionXT_analysis
+Title: to analyse behaviour in unsteady conditions
+Version: 0.0.0.9000
+Authors@R: 
+    person("F", "guillaud", , "felix.guillaud.work@gmail.com", role = c("aut", "cre"))
+Description: formate data acquired with EthoVisionXT 18 and make statistaical analysis on tracks, behaviour to better understand fish mecanics, patterns, and behaviours, videos sequences have been acquired inside white octonal tank described in FG work.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports: 
+    coin,
+    dplyr,
+    GGally,
+    gganimate,
+    ggdist,
+    ggplot2,
+    hexbin,
+    MASS,
+    pdp,
+    purrr,
+    randomForest,
+    randomForestExplainer,
+    readr,
+    readxl,
+    usethis
